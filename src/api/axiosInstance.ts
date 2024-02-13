@@ -12,7 +12,7 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   error => {
-    console.error('Request Interceptor Error:', error);
+    __DEV__ && console.error('Request Interceptor Error:', error);
     return Promise.reject(error);
   },
 );

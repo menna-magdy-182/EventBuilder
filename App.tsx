@@ -10,6 +10,8 @@ import COLORS from 'constants/colors';
 import AppNavigation from 'navigation';
 import React from 'react';
 import {SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+import {Provider} from 'react-redux';
+import store from 'store/store';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -21,9 +23,11 @@ function App(): React.JSX.Element {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={[styles.container, backgroundStyle]}>
-        <AppNavigation />
-      </SafeAreaView>
+      <Provider store={store}>
+        <SafeAreaView style={[styles.container, backgroundStyle]}>
+          <AppNavigation />
+        </SafeAreaView>
+      </Provider>
     </QueryClientProvider>
   );
 }

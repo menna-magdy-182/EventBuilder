@@ -1,15 +1,18 @@
 import {View, Text, ActivityIndicator, FlatList} from 'react-native';
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from 'models/navigation';
 import COMMON_STYLES from 'constants/CommonStyles';
 import {RouteProp} from '@react-navigation/native';
-import axiosInstance from 'api/axiosInstance';
-import endpoints from 'constants/endpoints';
-import {useQuery} from '@tanstack/react-query';
 import COLORS from 'constants/colors';
 import CategoryProduct from 'components/CategoryProduct/CategoryProduct';
 import Header from 'components/Header/Header';
+import {useDispatch, useSelector} from 'react-redux';
+import {StoreState} from 'models/store';
+import {
+  fetchCategoryProductsRequested,
+  fetchCategoryProductsSucceeded,
+} from 'store/products/products.slice';
 
 type CategoryDetailsScreenProps = {
   navigation: NativeStackNavigationProp<MainStackParamList, 'CategoryDetails'>;
@@ -17,36 +20,32 @@ type CategoryDetailsScreenProps = {
 };
 
 const CategoryDetails: FC<CategoryDetailsScreenProps> = ({route}) => {
-  const {category} = route.params;
+  const {title, id: categoryId} = route.params.category;
+  const dispatch = useDispatch();
 
-  const getCategoryDetails = async () => {
-    const {data} = await axiosInstance.get(
-      endpoints.categoryDetails(category.id),
-    );
-    console.log(data);
-    return data;
-  };
+  const {loading, selectedCategoryProducts} = useSelector(
+    (state: StoreState) => state.products,
+  );
 
-  const {isLoading, data} = useQuery({
-    queryKey: [`categoryDetailsQuery${category.id}`],
-    queryFn: getCategoryDetails,
-  });
+  useEffect(() => {
+    dispatch(fetchCategoryProductsRequested({categoryId}));
+  }, [categoryId, dispatch]);
 
-  if (isLoading) {
-    return <ActivityIndicator animating={isLoading} color={COLORS.MAIN} />;
+  if (loading) {
+    return <ActivityIndicator animating={loading} color={COLORS.MAIN} />;
   }
 
   return (
     <View style={COMMON_STYLES.screenContainer}>
       <Header />
-      <Text style={COMMON_STYLES.screenHeader}>{category.title}</Text>
+      <Text style={COMMON_STYLES.screenHeader}>{title}</Text>
       <Text style={COMMON_STYLES.screenSubheader}>
         Add to your event to view our cost estimate.
       </Text>
       <Text style={COMMON_STYLES.averagePrice}>-</Text>
 
       <FlatList
-        data={data}
+        data={selectedCategoryProducts}
         numColumns={2}
         renderItem={({item}) => <CategoryProduct item={item} />}
         columnWrapperStyle={COMMON_STYLES.listColumnWrapper}

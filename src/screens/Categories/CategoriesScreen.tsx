@@ -1,32 +1,31 @@
-import axiosInstance from 'api/axiosInstance';
 import Category from 'components/Category/Category';
 import COLORS from 'constants/colors';
 import COMMON_STYLES from 'constants/CommonStyles';
-import endpoints from 'constants/endpoints';
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import styles from './styles';
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import {MainStackParamList} from 'models/navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useQuery} from '@tanstack/react-query';
 import {CustomButton} from 'components/Button/Button';
 import {ICategory} from 'models/categories';
-import Header from 'components/Header/Header';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchCategoriesRequested} from 'store/categories/categories.slice';
+import {StoreState} from 'models/store';
 
 type CategoriesScreenProps = {
   navigation: NativeStackNavigationProp<MainStackParamList, 'Categories'>;
 };
 
 const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
-  const getCategories = async () => {
-    const {data} = await axiosInstance.get(endpoints.categories);
-    return data;
-  };
+  const dispatch = useDispatch();
 
-  const {isLoading, data} = useQuery({
-    queryKey: ['categoriesData'],
-    queryFn: getCategories,
-  });
+  useEffect(() => {
+    dispatch(fetchCategoriesRequested());
+  }, [dispatch]);
+
+  const {categoriesList, loading} = useSelector(
+    (state: StoreState) => state.categories,
+  );
 
   const saveHandler = () => {};
 
@@ -34,8 +33,8 @@ const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
     navigation.navigate('CategoryDetails', {category});
   };
 
-  if (isLoading) {
-    return <ActivityIndicator animating={isLoading} color={COLORS.MAIN} />;
+  if (loading) {
+    return <ActivityIndicator animating={loading} color={COLORS.MAIN} />;
   }
 
   return (
@@ -47,7 +46,7 @@ const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
       <Text style={COMMON_STYLES.averagePrice}>-</Text>
 
       <FlatList
-        data={data}
+        data={categoriesList}
         numColumns={2}
         renderItem={({item}) => (
           <Category category={item} onPress={onPressCategoryHandler} />
