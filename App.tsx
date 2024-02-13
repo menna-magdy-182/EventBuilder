@@ -22,7 +22,7 @@ function App(): React.JSX.Element {
 
   return (
     <Provider store={store}>
-      <ToastProvider>
+      <ToastProvider duration={1500}>
         <SafeAreaView style={[styles.container, backgroundStyle]}>
           <AppNavigation />
         </SafeAreaView>
