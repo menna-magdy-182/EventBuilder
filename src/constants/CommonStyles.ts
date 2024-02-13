@@ -28,10 +28,8 @@ const COMMON_STYLES = StyleSheet.create({
     alignSelf: 'center',
   },
   listItemContainer: {
-    padding: 0,
     // subtract 48 as space between & around columns is 16 ( 16 * 3 )
     width: (SCREEN_WIDTH - 48) / 2,
-    justifyContent: 'center',
     marginBottom: 17,
     borderRadius: 4,
     overflow: 'hidden',
@@ -48,7 +46,7 @@ const COMMON_STYLES = StyleSheet.create({
     fontWeight: '500',
   },
   listContentContainer: {
-    paddingTop: 38,
+    marginTop: 38,
     alignItems: 'flex-start',
     paddingStart: 16,
   },

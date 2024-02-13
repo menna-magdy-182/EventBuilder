@@ -2,7 +2,7 @@ import Category from 'components/Category/Category';
 import COMMON_STYLES from 'constants/CommonStyles';
 import React, {FC, useEffect, useMemo} from 'react';
 import styles from './styles';
-import {FlatList, ScrollView} from 'react-native';
+import {FlatList, ScrollView, View} from 'react-native';
 import {MainStackParamList} from 'models/navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {CustomButton} from 'components/Button/Button';
@@ -50,25 +50,31 @@ const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={[COMMON_STYLES.screenContainer, styles.container]}>
-      <CustomText style={COMMON_STYLES.screenHeader}>Event Builder</CustomText>
-      <CustomText style={COMMON_STYLES.screenSubheader}>
-        Add to your event to view our cost estimate.
-      </CustomText>
+    <View style={COMMON_STYLES.screenContainer}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <CustomText style={COMMON_STYLES.screenHeader}>
+          Event Builder
+        </CustomText>
+        <CustomText style={COMMON_STYLES.screenSubheader}>
+          Add to your event to view our cost estimate.
+        </CustomText>
 
-      <CustomText style={COMMON_STYLES.averagePrice}>
-        {totalAveragePrice ? `${DEFAULT_CURRENCY}${totalAveragePrice}` : '-'}
-      </CustomText>
-      <FlatList
-        data={categoriesList}
-        scrollEnabled={false}
-        numColumns={2}
-        renderItem={({item}) => (
-          <Category category={item} onPressCategory={onPressCategoryHandler} />
-        )}
-        contentContainerStyle={COMMON_STYLES.listContentContainer}
-      />
+        <CustomText style={COMMON_STYLES.averagePrice}>
+          {totalAveragePrice ? `${DEFAULT_CURRENCY}${totalAveragePrice}` : '-'}
+        </CustomText>
+        <FlatList
+          data={categoriesList}
+          scrollEnabled={false}
+          numColumns={2}
+          renderItem={({item}) => (
+            <Category
+              category={item}
+              onPressCategory={onPressCategoryHandler}
+            />
+          )}
+          contentContainerStyle={COMMON_STYLES.listContentContainer}
+        />
+      </ScrollView>
       {!!cartProducts.length && (
         <CustomButton
           title="Save"
@@ -76,7 +82,7 @@ const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
           style={styles.saveButton}
         />
       )}
-    </ScrollView>
+    </View>
   );
 };
 

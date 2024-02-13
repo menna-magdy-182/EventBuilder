@@ -15,8 +15,8 @@
 		3E85013F2B7BA16E00A1D378 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 3E85013E2B7BA16E00A1D378 /* Fonts */; };
 		7699B88040F8A987B510C191 /* libPods-EventBuilder-EventBuilderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-EventBuilder-EventBuilderTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E154118EF9DD441A8DB2C2E7 /* Avenir-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F21796D61B1B41BE999849E0 /* Avenir-Bold.ttf */; };
 		B708738EC654492DB78157E8 /* Avenir-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30E872A06BC14A0CB731F878 /* Avenir-Light.ttf */; };
+		E154118EF9DD441A8DB2C2E7 /* Avenir-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F21796D61B1B41BE999849E0 /* Avenir-Bold.ttf */; };
 		FA3CB541E1674E16A41D27AC /* Avenir-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE1F1DE3A20E434D9CE2F019 /* Avenir-Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +41,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = EventBuilder/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = EventBuilder/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-EventBuilder-EventBuilderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EventBuilder-EventBuilderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E872A06BC14A0CB731F878 /* Avenir-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Light.ttf"; path = "../src/assets/fonts/Avenir-Light.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-EventBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventBuilder.debug.xcconfig"; path = "Target Support Files/Pods-EventBuilder/Pods-EventBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		3E85013E2B7BA16E00A1D378 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-EventBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventBuilder.release.xcconfig"; path = "Target Support Files/Pods-EventBuilder/Pods-EventBuilder.release.xcconfig"; sourceTree = "<group>"; };
@@ -49,9 +50,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = EventBuilder/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-EventBuilder-EventBuilderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventBuilder-EventBuilderTests.release.xcconfig"; path = "Target Support Files/Pods-EventBuilder-EventBuilderTests/Pods-EventBuilder-EventBuilderTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F21796D61B1B41BE999849E0 /* Avenir-Bold.ttf */ = {isa = PBXFileReference; name = "Avenir-Bold.ttf"; path = "../src/assets/fonts/Avenir-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		30E872A06BC14A0CB731F878 /* Avenir-Light.ttf */ = {isa = PBXFileReference; name = "Avenir-Light.ttf"; path = "../src/assets/fonts/Avenir-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FE1F1DE3A20E434D9CE2F019 /* Avenir-Regular.ttf */ = {isa = PBXFileReference; name = "Avenir-Regular.ttf"; path = "../src/assets/fonts/Avenir-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F21796D61B1B41BE999849E0 /* Avenir-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Bold.ttf"; path = "../src/assets/fonts/Avenir-Bold.ttf"; sourceTree = "<group>"; };
+		FE1F1DE3A20E434D9CE2F019 /* Avenir-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Regular.ttf"; path = "../src/assets/fonts/Avenir-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +115,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6964BDD910584C4880C2AD5C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F21796D61B1B41BE999849E0 /* Avenir-Bold.ttf */,
+				30E872A06BC14A0CB731F878 /* Avenir-Light.ttf */,
+				FE1F1DE3A20E434D9CE2F019 /* Avenir-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,17 +168,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		6964BDD910584C4880C2AD5C /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				F21796D61B1B41BE999849E0 /* Avenir-Bold.ttf */,
-				30E872A06BC14A0CB731F878 /* Avenir-Light.ttf */,
-				FE1F1DE3A20E434D9CE2F019 /* Avenir-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

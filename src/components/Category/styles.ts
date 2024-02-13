@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
   counterContainer: {
     backgroundColor: COLORS.MAIN,
     position: 'absolute',
-    paddingHorizontal: 5,
+    paddingHorizontal: 7,
     paddingVertical: 5,
-    borderRadius: 15,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     top: 9,
