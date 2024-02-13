@@ -13,14 +13,13 @@ const styles = StyleSheet.create({
   counterContainer: {
     backgroundColor: COLORS.MAIN,
     position: 'absolute',
-    paddingHorizontal: 7,
-    paddingVertical: 5,
-    borderRadius: 18,
+    minWidth: 30,
+    minHeight: 30,
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
     top: 9,
     right: 7,
-    aspectRatio: 1,
   },
   counterText: {
     color: COLORS.WHITE,
