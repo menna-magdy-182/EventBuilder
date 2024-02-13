@@ -6,6 +6,7 @@ import {
 
 const initialState: ProductsStoreState = {
   selectedCategoryProducts: [],
+  cartProducts: [],
   selectedCategoryId: undefined,
   loading: false,
   error: false,
@@ -30,6 +31,12 @@ export const productsSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
+    addToCartRequested: (state, action) => {
+      state.cartProducts = [
+        ...state.cartProducts,
+        {...action.payload, categoryId: state.selectedCategoryId},
+      ];
+    },
   },
 });
 
@@ -37,6 +44,7 @@ export const {
   fetchCategoryProductsFailed,
   fetchCategoryProductsRequested,
   fetchCategoryProductsSucceeded,
+  addToCartRequested,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

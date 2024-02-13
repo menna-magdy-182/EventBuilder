@@ -5,11 +5,11 @@
  * @format
  */
 
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import COLORS from 'constants/colors';
 import AppNavigation from 'navigation';
 import React from 'react';
 import {SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+import {ToastProvider} from 'react-native-toast-notifications';
 import {Provider} from 'react-redux';
 import store from 'store/store';
 
@@ -19,16 +19,15 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? COLORS.BLACK : COLORS.SCREEN_BG,
   };
-  const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ToastProvider>
         <SafeAreaView style={[styles.container, backgroundStyle]}>
           <AppNavigation />
         </SafeAreaView>
-      </Provider>
-    </QueryClientProvider>
+      </ToastProvider>
+    </Provider>
   );
 }
 

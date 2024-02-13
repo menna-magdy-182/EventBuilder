@@ -1,9 +1,8 @@
 import Category from 'components/Category/Category';
-import COLORS from 'constants/colors';
 import COMMON_STYLES from 'constants/CommonStyles';
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useMemo} from 'react';
 import styles from './styles';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text} from 'react-native';
 import {MainStackParamList} from 'models/navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {CustomButton} from 'components/Button/Button';
@@ -11,6 +10,8 @@ import {ICategory} from 'models/categories';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchCategoriesRequested} from 'store/categories/categories.slice';
 import {StoreState} from 'models/store';
+import {DEFAULT_CURRENCY} from 'constants/constant';
+import Loader from 'components/Loader/Loader';
 
 type CategoriesScreenProps = {
   navigation: NativeStackNavigationProp<MainStackParamList, 'Categories'>;
@@ -23,44 +24,57 @@ const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
     dispatch(fetchCategoriesRequested());
   }, [dispatch]);
 
-  const {categoriesList, loading} = useSelector(
-    (state: StoreState) => state.categories,
+  const {categoriesList, loading, cartProducts} = useSelector(
+    (state: StoreState) => ({
+      categoriesList: state.categories.categoriesList,
+      loading: state.categories.loading,
+      cartProducts: state.products.cartProducts,
+    }),
   );
 
-  const saveHandler = () => {};
+  const totalAveragePrice = useMemo(() => {
+    return cartProducts.reduce((sum, product) => sum + product.avgBudget, 0);
+  }, [cartProducts]);
+
+  const saveHandler = () => navigation.navigate('Checkout');
 
   const onPressCategoryHandler = (category: ICategory) => {
     navigation.navigate('CategoryDetails', {category});
   };
 
   if (loading) {
-    return <ActivityIndicator animating={loading} color={COLORS.MAIN} />;
+    return <Loader loading={loading} />;
   }
 
   return (
-    <View style={[COMMON_STYLES.screenContainer, styles.container]}>
+    <ScrollView
+      contentContainerStyle={[COMMON_STYLES.screenContainer, styles.container]}>
       <Text style={COMMON_STYLES.screenHeader}>Event Builder</Text>
       <Text style={COMMON_STYLES.screenSubheader}>
         Add to your event to view our cost estimate.
       </Text>
-      <Text style={COMMON_STYLES.averagePrice}>-</Text>
+
+      <Text style={COMMON_STYLES.averagePrice}>
+        {totalAveragePrice ? `${DEFAULT_CURRENCY}${totalAveragePrice}` : '-'}
+      </Text>
 
       <FlatList
         data={categoriesList}
+        scrollEnabled={false}
         numColumns={2}
         renderItem={({item}) => (
-          <Category category={item} onPress={onPressCategoryHandler} />
+          <Category category={item} onPressCategory={onPressCategoryHandler} />
         )}
-        columnWrapperStyle={COMMON_STYLES.listColumnWrapper}
         contentContainerStyle={COMMON_STYLES.listContentContainer}
       />
-
-      <CustomButton
-        title="Save"
-        onPress={saveHandler}
-        style={styles.saveButton}
-      />
-    </View>
+      {!!cartProducts.length && (
+        <CustomButton
+          title="Save"
+          onPress={saveHandler}
+          style={styles.saveButton}
+        />
+      )}
+    </ScrollView>
   );
 };
 

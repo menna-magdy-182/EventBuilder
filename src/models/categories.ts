@@ -12,3 +12,7 @@ export interface ICategoryProduct {
   avgBudget: number;
   image: string;
 }
+
+export interface ICartProduct extends ICategoryProduct {
+  categoryId: number;
+}
