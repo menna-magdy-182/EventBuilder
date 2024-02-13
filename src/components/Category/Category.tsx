@@ -3,7 +3,7 @@ import COMMON_STYLES from 'constants/CommonStyles';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import React, {useCallback} from 'react';
 import {ICategory} from 'models/categories';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {useSelector} from 'react-redux';
 import {StoreState} from 'models/store';

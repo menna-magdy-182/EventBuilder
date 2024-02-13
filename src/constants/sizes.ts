@@ -5,8 +5,3 @@ export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} =
 
 export const guidelineBaseWidth = 375;
 export const guidelineBaseHeight = 812;
-
-export const calcWidth = (size: number) =>
-  (SCREEN_WIDTH / guidelineBaseWidth) * size; // only width
-export const calcHeight = (size: number) =>
-  (SCREEN_HEIGHT / guidelineBaseHeight) * size; // only height

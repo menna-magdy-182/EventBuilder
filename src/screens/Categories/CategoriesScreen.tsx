@@ -5,7 +5,7 @@ import styles from './styles';
 import {FlatList, ScrollView} from 'react-native';
 import {MainStackParamList} from 'models/navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {BUTTON_MODE, CustomButton} from 'components/Button/Button';
+import {CustomButton} from 'components/Button/Button';
 import {ICategory} from 'models/categories';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchCategoriesRequested} from 'store/categories/categories.slice';
