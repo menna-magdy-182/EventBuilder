@@ -1,13 +1,13 @@
-import COLORS from 'constants/colors';
-import {calcWidth} from 'constants/sizes';
+import CustomText from 'components/Text/Text';
 import React from 'react';
 import {
-  StyleSheet,
   TouchableOpacity,
   type TextStyle,
   type ViewStyle,
-  Text,
+  ActivityIndicator,
 } from 'react-native';
+import styles from './styles';
+import COLORS from 'constants/colors';
 
 export enum BUTTON_MODE {
   OUTLINED,
@@ -40,47 +40,21 @@ const CustomButton = ({
         disabled && styles.disabledContainer,
         style,
       ]}>
-      <Text
-        style={[
-          styles.label,
-          mode === BUTTON_MODE.OUTLINED && styles.outlinedLabel,
-          disabled && styles.disabledLabel,
-          labelStyle,
-        ]}>
-        {title || 'click here'}
-      </Text>
+      {isLoading ? (
+        <ActivityIndicator color={COLORS.WHITE} />
+      ) : (
+        <CustomText
+          style={[
+            styles.label,
+            mode === BUTTON_MODE.OUTLINED && styles.outlinedLabel,
+            disabled && styles.disabledLabel,
+            labelStyle,
+          ]}>
+          {title || 'click here'}
+        </CustomText>
+      )}
     </TouchableOpacity>
   );
 };
 
 export {CustomButton};
-
-const styles = StyleSheet.create({
-  button: {
-    alignSelf: 'stretch',
-    backgroundColor: COLORS.MAIN,
-    borderColor: COLORS.MAIN,
-    borderRadius: 5,
-    borderWidth: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
-    alignItems: 'center',
-    minHeight: 47,
-  },
-  disabledContainer: {},
-  disabledLabel: {},
-  label: {
-    color: COLORS.WHITE,
-    fontSize: 16,
-    fontWeight: 'bold',
-    textTransform: 'capitalize',
-  },
-  outlinedContainer: {
-    backgroundColor: COLORS.WHITE,
-    borderColor: COLORS.MAIN,
-  },
-
-  outlinedLabel: {
-    color: COLORS.MAIN,
-  },
-});

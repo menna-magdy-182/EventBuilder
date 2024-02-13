@@ -8,6 +8,7 @@ import FastImage from 'react-native-fast-image';
 import {useSelector} from 'react-redux';
 import {StoreState} from 'models/store';
 import styles from './styles';
+import CustomText from 'components/Text/Text';
 
 interface CategoryProps {
   category: ICategory;
@@ -36,13 +37,16 @@ const Category = ({category, onPressCategory}: CategoryProps) => {
         style={COMMON_STYLES.listItemImage}
         resizeMode="stretch"
       />
-      <View style={styles.counterContainer}>
-        <Text style={styles.counterText}>
-          {String(productsCounter).padStart(2, '0')}
-        </Text>
-      </View>
+      {Boolean(productsCounter) && (
+        <View style={styles.counterContainer}>
+          <CustomText style={styles.counterText}>
+            {String(productsCounter).padStart(2, '0')}
+          </CustomText>
+        </View>
+      )}
+
       <View style={styles.listItemFooter}>
-        <Text style={COMMON_STYLES.listItemName}>{title}</Text>
+        <CustomText style={COMMON_STYLES.listItemName}>{title}</CustomText>
         <Icon name="chevron-right" size={15} color={COLORS.MAIN} />
       </View>
     </TouchableOpacity>

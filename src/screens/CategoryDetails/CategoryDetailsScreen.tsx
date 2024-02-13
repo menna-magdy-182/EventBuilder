@@ -1,17 +1,9 @@
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  FlatList,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, FlatList, ScrollView} from 'react-native';
 import React, {FC, useCallback, useEffect} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from 'models/navigation';
 import COMMON_STYLES from 'constants/CommonStyles';
 import {RouteProp} from '@react-navigation/native';
-import COLORS from 'constants/colors';
 import CategoryProduct from 'components/CategoryProduct/CategoryProduct';
 import Header from 'components/Header/Header';
 import {useDispatch, useSelector} from 'react-redux';
@@ -19,6 +11,7 @@ import {StoreState} from 'models/store';
 import {fetchCategoryProductsRequested} from 'store/products/products.slice';
 import {DEFAULT_CURRENCY} from 'constants/constant';
 import Loader from 'components/Loader/Loader';
+import CustomText from 'components/Text/Text';
 
 type CategoryDetailsScreenProps = {
   navigation: NativeStackNavigationProp<MainStackParamList, 'CategoryDetails'>;
@@ -45,10 +38,10 @@ const CategoryDetails: FC<CategoryDetailsScreenProps> = ({route}) => {
       .filter(product => product.categoryId === categoryId)
       .reduce((sum, product) => sum + product.maxBudget, 0);
     return (
-      <Text style={COMMON_STYLES.averagePrice}>
+      <CustomText style={COMMON_STYLES.averagePrice}>
         {minAveragePrice ? `${DEFAULT_CURRENCY}${minAveragePrice} ` : ''}-
         {maxAveragePrice ? ` ${DEFAULT_CURRENCY}${maxAveragePrice}` : ''}
-      </Text>
+      </CustomText>
     );
   }, [cartProducts, categoryId]);
 
@@ -60,10 +53,10 @@ const CategoryDetails: FC<CategoryDetailsScreenProps> = ({route}) => {
     <View style={COMMON_STYLES.screenContainer}>
       <Header />
       <ScrollView>
-        <Text style={COMMON_STYLES.screenHeader}>{title}</Text>
-        <Text style={COMMON_STYLES.screenSubheader}>
+        <CustomText style={COMMON_STYLES.screenHeader}>{title}</CustomText>
+        <CustomText style={COMMON_STYLES.screenSubheader}>
           Add to your event to view our cost estimate.
-        </Text>
+        </CustomText>
         {renderPricesRange()}
         <FlatList
           scrollEnabled={false}

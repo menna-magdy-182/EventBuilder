@@ -2,16 +2,17 @@ import Category from 'components/Category/Category';
 import COMMON_STYLES from 'constants/CommonStyles';
 import React, {FC, useEffect, useMemo} from 'react';
 import styles from './styles';
-import {FlatList, ScrollView, Text} from 'react-native';
+import {FlatList, ScrollView} from 'react-native';
 import {MainStackParamList} from 'models/navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {CustomButton} from 'components/Button/Button';
+import {BUTTON_MODE, CustomButton} from 'components/Button/Button';
 import {ICategory} from 'models/categories';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchCategoriesRequested} from 'store/categories/categories.slice';
 import {StoreState} from 'models/store';
 import {DEFAULT_CURRENCY} from 'constants/constant';
 import Loader from 'components/Loader/Loader';
+import CustomText from 'components/Text/Text';
 
 type CategoriesScreenProps = {
   navigation: NativeStackNavigationProp<MainStackParamList, 'Categories'>;
@@ -33,7 +34,9 @@ const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
   );
 
   const totalAveragePrice = useMemo(() => {
-    return cartProducts.reduce((sum, product) => sum + product.avgBudget, 0);
+    return cartProducts.length
+      ? cartProducts.reduce((sum, product) => sum + product.avgBudget, 0)
+      : 0;
   }, [cartProducts]);
 
   const saveHandler = () => navigation.navigate('Checkout');
@@ -49,15 +52,14 @@ const Categories: FC<CategoriesScreenProps> = ({navigation}) => {
   return (
     <ScrollView
       contentContainerStyle={[COMMON_STYLES.screenContainer, styles.container]}>
-      <Text style={COMMON_STYLES.screenHeader}>Event Builder</Text>
-      <Text style={COMMON_STYLES.screenSubheader}>
+      <CustomText style={COMMON_STYLES.screenHeader}>Event Builder</CustomText>
+      <CustomText style={COMMON_STYLES.screenSubheader}>
         Add to your event to view our cost estimate.
-      </Text>
+      </CustomText>
 
-      <Text style={COMMON_STYLES.averagePrice}>
+      <CustomText style={COMMON_STYLES.averagePrice}>
         {totalAveragePrice ? `${DEFAULT_CURRENCY}${totalAveragePrice}` : '-'}
-      </Text>
-
+      </CustomText>
       <FlatList
         data={categoriesList}
         scrollEnabled={false}
